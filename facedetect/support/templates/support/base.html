@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% load static %}
+<head>
+    <title>{% block title%} {% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}">
+
+</head>
+<body>
+<header>
+    <a class="logo" href="{% url 'main' %}"><img class="logo" src="/media/logo/logotip.png"></a>
+    <h1>PhotoSplitter</h1>
+    {% block search %}
+    <form class="search-form" action="{% url 'find' %}" method="GET">
+        <div>
+            <input type="search" name="meetings" placeholder="search">
+        </div>
+    </form>
+    {% endblock %}
+
+    {% block menu %}
+    <div class="menu">
+        {% if menu != None %}
+            {% for m in menu %}
+            <a class="nav-link" href="{% url m.url_name %}">{{m.title}}</a>
+            {% endfor %}
+        {% else %}
+            {% block profile_icon %}
+            <a class="profile-icon" href="{% url 'profile' %}"></a>
+            {% endblock profile_icon %}
+
+            {% block exit %}
+            <a class="exit" href="{% url 'logout' %}"></a>
+            {% endblock %}
+        {% endif %}
+    </div>
+    {% endblock %}
+
+</header>
+
+<!-- Хлебные крошки -->
+{% block breadcrumbs %}
+{% endblock %}
+
+<!-- Блок контента -->
+<div class="content-text">
+    {% block content %}
+    {% endblock %}
+</div>
+<!-- Конец блока контента -->
+
+<!-- Footer -->
+<div class="footer">
+    <p>2024–2024</p>
+    <a class="nav-link" href="{% url 'contacts' %}">Контакты</a>
+</div>
+<!-- Конец footer'а и страницы -->
+</body>
+</html>

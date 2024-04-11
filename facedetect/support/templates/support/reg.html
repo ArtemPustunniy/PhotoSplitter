@@ -1,0 +1,30 @@
+{% extends  'support/base.html'%}
+{% block welcome_menu %} {% endblock %}
+{% block search %} {% endblock %}
+{% block content %}
+    <h1>Создать акакунт </h1>
+    <p>Зарегистрируйтесь используя форму </p>
+    <form action="." method="post">
+        {{ user_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Create my account"></p>
+    </form>
+{% endblock %}
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Создать акакунт </h1>-->
+<!--    <p>Зарегистрируйтесь используя форму </p>-->
+<!--    <form action="." method="post">-->
+<!--        {{ user_form.as_p }}-->
+<!--        {% csrf_token %}-->
+<!--        <p><input type="submit" value="Create my account"></p>-->
+<!--    </form>-->
+<!--</body>-->
+<!--</html>-->
+

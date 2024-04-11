@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="card mb-3">
+
+
+
+{% for event in absolute_objects %}
+
+    <div class="card-header">
+            Название мероприятия: <a>{{ event.info_event.eventname }}</a>
+          </div>
+          <div class="card-body">
+            <div class="media">
+                    {% for photo in event.event_photos %}
+                        <img src="{{ photo }}" alt="No photo" class="mr-3">
+                    {% endfor %}
+                <div class="media-body">
+                    <p class="card-text">{{ event.event_name.description|safe|linebreaks|truncatewords:50}}</p>
+                    <a href="/detail_events/{{event.info_event.id}}" class="btn btn-primary">See more...</a>
+                </div>
+            </div>
+          </div>
+          <div class="card-footer text-muted">
+            {{ event.event_name.eventdate}}
+          </div>
+    <hr>
+    </div>
+
+<!--    <p>{{ event.eventname }}</p>-->
+{% endfor %}
+</body>
+</html>

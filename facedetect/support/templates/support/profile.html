@@ -1,0 +1,53 @@
+{% extends  'support/base.html'%}
+{% block title %} {% endblock %}
+{% block content %}
+{% if has_full_profile == 1 %}
+    <img src="{{ profile_photo_1.url }}" alt="" width="150" class="mr-1">
+    <img src="{{ profile_photo_2.url }}" alt="" width="150" class="mr-1">
+    <h1><a href="{% url 'change_photo' %}">Изменить фото профиля</a></h1>
+{% else %}
+    <p>{{profile_photo_info}}</p>
+    <h1><a href="{% url 'add_photo' %}">Добавить фото профиля</a></h1>
+{% endif %}
+{% for event in absolute_objects %}
+    <div class="event">
+        {% if event.info_event.private_mode == 0 %}
+        <div class="event-preview">
+            <img href="/detail_events/{{event.info_event.id}}" src="{{ event.event_photos }}"  alt="No photo" class="mr-3"/>
+        </div>
+        <p><a href="/detail_events/{{event.info_event.id}}">{{event.info_event.eventname}}</a></p>
+        {% else %}
+        <img src="{{ event.event_photos }}" alt="No photo" class="mr-3"/>
+        <p><a href="/confirm_password/{{event.info_event.id}}">{{event.info_event.eventname}}</a></p>
+        {% endif %}
+        <p>{{ event.info_event.description }}</p>
+        <div class="likes">
+            <img class="likes-image" src="/media/images/heart_image.png" alt="heart"/>
+            <p>{{ event.info_event.likes }}</p>
+        </div>
+    </div>
+<!--    <p>{{ event.eventname }}</p>-->
+{% endfor %}
+
+
+
+{% endblock %}
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Id вашего профиля - {{ user_id }}</h1>-->
+<!--{% if has_full_profile == 1 %}-->
+<!--    <img src="{{ profile_photo_1.url }}" alt="" width="350" class="mr-3">-->
+<!--    <img src="{{ profile_photo_2.url }}" alt="" width="350" class="mr-3">-->
+<!--    <h1><a href="{% url 'change_photo' %}">Изменить фото профиля</a></h1>-->
+<!--{% else %}-->
+<!--    <p>{{profile_photo_info}}</p>-->
+<!--    <h1><a href="{% url 'add_photo' %}">Добавить фото профиля</a></h1>-->
+<!--{% endif %}-->
+
+<!--</body>-->
+<!--</html>-->
