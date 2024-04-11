@@ -1,0 +1,15 @@
+{% extends  'support/base.html'%}
+{% block menu %} {% endblock %}
+{% block title %} {% endblock %}
+{% block search %} {% endblock %}
+{% block content %}
+    <form method="post">
+    {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password">
+        <input type="submit" value="Login">
+        <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+    </form>
+{% endblock %}

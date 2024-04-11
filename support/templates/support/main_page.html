@@ -1,0 +1,37 @@
+{% extends  'support/base.html'%}
+{% block title %} Главная страница {% endblock %}
+
+{% block content %}
+{% block add_task %}
+<button type="add_task">
+    <a class="add_task" href="{% url 'add_event' %}">создать новый ивент</a>
+</button>
+{% endblock %}
+<div class="events">
+    {% for event in absolute_objects %}
+    <div class="event">
+        {% if event.info_event.private_mode == 0 %}
+        <div class="event-preview">
+            <img src="{{ event.event_photos }}"  alt="No preview" class="mr-3"/>
+        </div>
+        <p><a href="/detail_events/{{event.info_event.id}}">{{event.info_event.eventname}}</a></p>
+        {% else %}
+        <div class="event-preview">
+            <img src="{{ event.event_photos }}"  alt="No preview" class="mr-3"/>
+        </div>
+        <p><a href="/confirm_password/{{event.info_event.id}}">{{event.info_event.eventname}}</a></p>
+        {% endif %}
+        <div class="likes">
+            <img class="likes-image" src="/media/images/heart_image.png" alt="heart"/>
+            <p>{{ event.info_event.likes }}</p>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% for number in events.paginator.page_range %}
+<div class="page-item"><a href="?meetings={{ query }}&page={{ number }}" class="page-link">{{ number }}</a></div>
+{% endfor %}
+{% endblock %}
+
+
